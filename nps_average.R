@@ -8,7 +8,8 @@ nps_hist = hist(nps$nps, breaks = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                 main = 'NPS', xlab = 'Score', col = 'dodgerblue')
 
 nps_data = data.frame(category = c('Y', 'N'),
-                      count = c(round(mean(nps$nps), digits = 1), 10)
+                      count = c(round(mean(nps$nps), digits = 1),
+                                (10 - round(mean(nps$nps), digits = 1)))
 )
 
 nps_data$fraction = nps_data$count/sum(nps_data$count)
@@ -22,7 +23,8 @@ ggplot(nps_data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3,
   geom_rect() + coord_polar(theta = 'y') +
   xlim(c(2, 4)) +
   theme_void() +
-  scale_fill_manual(values = c('green4', 'grey')) +
+  scale_fill_manual(values = c('gray', 'green4')) +
   annotate('text', x = 2, y = 0, label = avg, size = 30)
 
 # Reduce image size to 250 x 250
+
